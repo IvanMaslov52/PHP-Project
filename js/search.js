@@ -7,17 +7,21 @@ $(function(){
                 {"value": value},
                 function(data){
                     $(".search_result").html(data).fadeIn();
+                    console.log("132131");
                 }
             );
 
         }
+    });
+    $(".search_result").hover(function(){
+        $(".who").blur();
     })
+    $(".search_result").on("click", "li", function(){
+        s_user = $(this).text().trim();
+        $(".who").val(s_user);
+        $(".search_result").fadeOut();
+    });
 
-
-    $("#selectedElem").on("click", function () {
-        $('#subjects option:contains("' + $(this).text().trim() + '")').prop('selected', false);
-        $(this).remove();
-    })
     $("#friendsButton").click(function (){
         $("#mainDiv").empty();
         $.post("displayFriends.php",{}, function (data) {
@@ -88,56 +92,46 @@ $(function(){
     $("#addFriendsButton").click(function ()
     {
         $("#mainDiv").empty();
-        $("#mainDiv").append(" <form action='friendsScript.php' method='post' class='p-4'>" +
-            "        <label for='username'>Добавить друга:</label>" +
-            "        <input id='who' ENGINE='text' name='who' placeholder='Живой поиск'  class='who'  autocomplete='off'>" +
-            "        <ul class='search_result'></ul>" +
-            "        <button type='submit'>Добавить</button>" +
-            "    </form>");
+        $("#friendsForm").css("display", "");
+
     });
 
-    $(".search_result").hover(function(){
-        $(".who").blur();
-    })
-    $(".search_result").on("click", "li", function(){
-        s_user = $(this).text().trim();
-        $(".who").val(s_user);
-        $(".search_result").fadeOut();
-    });
 
-    $.post("displayFriends.php",{}, function (data)
-    {
+    $.post("displayFriends.php",{}, function (data) {
         data = JSON.parse(data);
-        for(let i = 0;i < data.length;i++)
-        {
-            $("#mainDiv").append(
-                "<div class='myRow p-4'>" +
-                "<div class='center'>" +
-                "<div class=\"avatar-container\">" +
-                "            <div class=\"avatar\">" +
-                "                <img src='image/avatar.jpg' />" +
-                "            </div>\n" +
-                "        </div>" +
-                "<div>" +
-                "<span class='spanusername'>"+ data[i].username+"</span>" +
-                "<form action='convChat.php' method='post' class='p-1'>" +
-                "<input type='hidden' name='username'  id='username' value='"+data[i].username +"'    >" +
-                "<button type='submit' class='exitButton'>Написать сообщение</button>"+
-                "</form>" +
-                "</div>" +
-                "</div>" +
-                "<div class='dropdown'> "+
-                "<button class='dropbtn'>Подробнее</button>"+
-                "<div class='dropdown-content'>" +
-                "<form action='deleteFriends.php' method='post'>" +
-                "<div class='myRow'>" +
-                "<input type='hidden' name='username'  id='username' value='"+data[i].username +"'    >" +
-                "<button type='submit' class='exitButton'>Удалить друга</button>"+
-                "</div>" +
-                "</form>"+
-                "</div>"+
-                "</div>"
-            );
+        if (data.length == 0) {
+            $("#mainDiv").append("<div class='p-4 bold'> У вас пока нет друзей</div>");
+        } else {
+            for (let i = 0; i < data.length; i++) {
+                $("#mainDiv").append(
+                    "<div class='myRow p-4'>" +
+                    "<div class='center'>" +
+                    "<div class=\"avatar-container\">" +
+                    "            <div class=\"avatar\">" +
+                    "                <img src='image/avatar.jpg' />" +
+                    "            </div>\n" +
+                    "        </div>" +
+                    "<div>" +
+                    "<span class='spanusername'>" + data[i].username + "</span>" +
+                    "<form action='convChat.php' method='post' class='p-1'>" +
+                    "<input type='hidden' name='username'  id='username' value='" + data[i].username + "'    >" +
+                    "<button type='submit' class='exitButton'>Написать сообщение</button>" +
+                    "</form>" +
+                    "</div>" +
+                    "</div>" +
+                    "<div class='dropdown'> " +
+                    "<button class='dropbtn'>Подробнее</button>" +
+                    "<div class='dropdown-content'>" +
+                    "<form action='deleteFriends.php' method='post'>" +
+                    "<div class='myRow'>" +
+                    "<input type='hidden' name='username'  id='username' value='" + data[i].username + "'    >" +
+                    "<button type='submit' class='exitButton'>Удалить друга</button>" +
+                    "</div>" +
+                    "</form>" +
+                    "</div>" +
+                    "</div>"
+                );
+            }
         }
     });
 

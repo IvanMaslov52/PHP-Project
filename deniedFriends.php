@@ -12,4 +12,8 @@ while ($row = pg_fetch_object($query))
 }
 pg_query($cn,"DELETE FROM friends WHERE users_one = $index AND users_two=$id AND status = 'waiting';");
 header('Location: main.php ');
+
+
+
+
 ?>

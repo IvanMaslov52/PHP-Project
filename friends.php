@@ -32,7 +32,14 @@ else
 </div>
 <div class="profile-description">
     <div class="contact-info">
-        <div id="mainDiv"></div>
+        <div id="mainDiv">
+            <form action='friendsScript.php' method='post'  style="display: none" class='p-4' id="friendsForm">
+                      <label for='username'>Добавить друга:</label>
+                       <input id='who' ENGINE='text' name='who' placeholder='Живой поиск'  class='who'  autocomplete='off'>
+                       <ul class='search_result'></ul>
+                       <button type='submit'>Добавить</button>
+                    </form>
+        </div>
     </div>
 </div>
 
