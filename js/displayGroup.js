@@ -10,7 +10,7 @@ $(function (){
                var groupBlock = $("#group .rowDiv").clone(true);
                groupBlock.appendTo("#table");
                groupBlock.find(".name").text( group.name);
-               groupBlock.find(".status").text(group.status);
+               groupBlock.find(".status").text(group.partyStatus);
            }
         }
     );

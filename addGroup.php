@@ -18,12 +18,12 @@ else
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.1/jquery.validate.js"></script>
     <script src="js/addGroup.js"></script>
-    <link rel="stylesheet" href="css/styles.css" type="text/css">
+    <link rel="stylesheet" href="css/authorize.css" type="text/css">
 </head>
 <body class="container bg-light">
 
 <h1>Создание группы</h1>
-<div class=" addGroupDiv container mt-4 p-4 m-4 bg-white rounded-4">
+<div class=" boxshadow container mt-4 p-4 m-4 bg-white rounded-4">
     <div class="form-group p-1">
     </div>
     <form id="addGroup" action="addingGroup.php" method="post">

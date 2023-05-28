@@ -3,7 +3,7 @@ session_start();
 $id = $_SESSION['user']['id'];
 require "connect.php";
 
-$query = "SELECT party.party_id,name,description,party.status FROM party inner join users_party using(users_id) where users_id = $id group by party.party_id;";
+$query = "select  party_id,party.name,party.status,party.description,role,users_party.position from users_party inner join party using (party_id) where users_party.users_id  = 1";
 $queryResult = pg_query($cn, $query);
 $result = array();
 while ($row = pg_fetch_assoc($queryResult)) {
@@ -11,7 +11,9 @@ while ($row = pg_fetch_assoc($queryResult)) {
         "id"=>$row['party_id'],
         "name"=>$row['name'],
         "description"=>$row['description'],
-        "status"=>$row['status']
+        "status"=>$row['status'],
+        "role"=>$row['role'],
+        "position"=>$row['position']
     );
     array_push($result,$party);
 }

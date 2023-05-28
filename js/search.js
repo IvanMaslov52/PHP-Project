@@ -1,4 +1,5 @@
 $(function(){
+    $("#friendsForm").css("display", "none");
 
     $('.who').bind("change keyup input click", function() {
         if(this.value.length >= 2){
@@ -24,6 +25,7 @@ $(function(){
 
     $("#friendsButton").click(function (){
         $("#mainDiv").empty();
+        $("#friendsForm").css("display", "none");
         $.post("displayFriends.php",{}, function (data) {
             data = JSON.parse(data);
             if (data.length == 0) {
@@ -64,6 +66,7 @@ $(function(){
     });
     $("#requestFriendsButtton").click(function ()
         {
+            $("#friendsForm").css("display", "none");
             $("#mainDiv").empty();
             $.post("findFriends.php",{}, function (data)
             {
@@ -75,16 +78,35 @@ $(function(){
                 else {
                 for(let i = 0;i < data.length;i++)
                 {
-                    $("#mainDiv").append("<div class='flex p-1'><form action='acceptedFriends.php' method='post'>" +
-                        '<label class="p-1">'+ data[i].username + '</label>'+
+
+
+                    $("#mainDiv").append(
+                        "<div class='myRow p-4'>" +
+                        "<div class='center'>" +
+                        "<div class=\"avatar-container\">" +
+                        "            <div class=\"avatar\">" +
+                        "                <img src='image/avatar.jpg' />" +
+                        "            </div>\n" +
+                        "        </div>" +
+                        "<div>" +
+                        "<span class='spanusername'>" + data[i].username + "</span>" +
+                        "<div class='p-3'>Хочет добавить вас в друзья</div>"+
+                        "</div>" +
+                        "</div>" +
+                        "<div class='dropdown'> " +
+                        "<button class='dropbtn'>Подробнее</button>" +
+                        "<div class='dropdown-content'>" +
+                        "<form action='acceptedFriends.php' method='post'>" +
                         '<input type="hidden" value="'+ data[i].username +'" id="accepted" name="accepted">' +
-                        "<button type='submit' class='submitButton'>Добавить</button>"+
+                        "<button type='submit' class='exitButton'>Добавить</button>"+
                         "</form>" +
                         " <form action='deniedFriends.php' method='post'>" +
                         '<input type="hidden" value="'+ data[i].username +'" id="denied" name="denied">' +
-                        "<button type='submit' class='submitButton'>Отказать</button>"+
+                        "<button type='submit' class='exitButton'>Отказать</button>"+
                         "</form>"+
-                        "</div>");
+                        "</div>" +
+                        "</div>"
+                    );
                 }
             }});
         }
@@ -115,7 +137,7 @@ $(function(){
                     "<span class='spanusername'>" + data[i].username + "</span>" +
                     "<form action='convChat.php' method='post' class='p-1'>" +
                     "<input type='hidden' name='username'  id='username' value='" + data[i].username + "'    >" +
-                    "<button type='submit' class='exitButton'>Написать сообщение</button>" +
+                    "<button type='submit' class='exitButton p-3'>Написать сообщение</button>" +
                     "</form>" +
                     "</div>" +
                     "</div>" +
@@ -125,7 +147,7 @@ $(function(){
                     "<form action='deleteFriends.php' method='post'>" +
                     "<div class='myRow'>" +
                     "<input type='hidden' name='username'  id='username' value='" + data[i].username + "'    >" +
-                    "<button type='submit' class='exitButton'>Удалить друга</button>" +
+                    "<button type='submit' class='exitButton p-3'>Удалить друга</button>" +
                     "</div>" +
                     "</form>" +
                     "</div>" +
