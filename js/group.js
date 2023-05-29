@@ -15,7 +15,7 @@ $(function (){
                           "role": data[i].role,
                           "position": data[i].position,
                           "more": '' +
-                              "<form action='' method='POST'>" +
+                              "<form action='groupInside.php' method='POST'>" +
                               "<input type='hidden' name='group'  id='group' value='" + data[i].id + "'>" +
                               '<button type="submit" class="navButton">Подробнее</button>'+
                               "</form>"
