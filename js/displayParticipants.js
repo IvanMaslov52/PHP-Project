@@ -42,10 +42,8 @@ $(function (){
                             "role": data[i].role,
                             "position": data[i].position,
                             "redac":
-                                "<form action='' method='POST'>" +
-                                "<input type='hidden' name='group'  id='group' value='" + data[i].id + "'>" +
-                                '<button type="submit" class="navButton">Подробнее</button>'+
-                                "</form>"
+
+                                '<button type="submit" class="navButton">Подробнее</button>'
                         });
                 }
                 var table = $('#myTable').DataTable(
