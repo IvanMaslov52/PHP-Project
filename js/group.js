@@ -14,10 +14,15 @@ $(function (){
                           "status": data[i].status,
                           "role": data[i].role,
                           "position": data[i].position,
-                          "more": '<button type="submit" class="navButton">Подробнее</button>',
+                          "more": '' +
+                              "<form action='' method='POST'>" +
+                              "<input type='hidden' name='group'  id='group' value='" + data[i].id + "'>" +
+                              '<button type="submit" class="navButton">Подробнее</button>'+
+                              "</form>"
                       });
               }
-        var table = $('#myTable').DataTable({
+        var table = $('#myTable').DataTable(
+        {
             "columns": [
                 {
                     "title": "Название группы", "data": "name", "visible": true,
