@@ -38,6 +38,7 @@ while ($row = pg_fetch_assoc($query))
     <script src="/js/language.js" type="text/javascript"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+
 </head>
 <body>
 <input type="hidden" id="group" name="group" value="<?php echo $group ?>">
@@ -46,12 +47,23 @@ while ($row = pg_fetch_assoc($query))
 
 
 <?php echo "<h1>".$name."</h1>" ?>  <!-- сюда передать как параметр -->
-Описание: <p>
+<div class="line p-1"></div>
+    <div class="pt-3">
+        <p class="fw-bold">Описание: </p>
+    </div>
     <?php
-    echo "<div>".$description."</div>"
+    echo "<div class='border  border-2 rounded border-primary p-2'>".$description."</div>"
     ?>
-<p>
-    Список участников: <p>
+
+    <div class="pt-3">
+        <p class="fw-bold">Прогресс тасков: </p>
+    </div>
+
+    <span class="">Задач выполнено : 25/50</span>
+    <div class="progressionContainer">
+        <div class="progression"></div>
+    </div>
+<p class="pt-3 fw-bold"> Список участников: </p>
 
 <div id="displayParticipants">
 

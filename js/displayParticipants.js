@@ -63,7 +63,8 @@ $(function (){
                             }
                         ], "language": language(),
                         data: arr,
-                        responsive: true
+                        responsive: true,
+                        "sDom": ''
                     });
 
 
@@ -98,7 +99,9 @@ $(function (){
                             }
                         ], "language": language(),
                         data: arr,
-                        responsive: true
+                        responsive: true,
+                        "sDom": ''
+
                     });
             }
 

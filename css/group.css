@@ -58,10 +58,10 @@ body {
 
 
 
-.progressContainer{
+.progressionContainer{
     background: #E4E9E5;
     border-radius: 5px;
-    width: 900px;
+    width: 1300px;
     height: 10px;
     margin-top: 5px;
     display: flex;
@@ -69,12 +69,13 @@ body {
     cursor: pointer;
 
 }
-.progress
+.progression
 {
-    background: #2B3C5B;
+    background-color: #2B3C5B;
     border-radius: 5px;
     height: 6px;
-    width: 450px;
+    width: 650px;
+
 }
 .somepad
 {
@@ -104,4 +105,13 @@ body {
 .navButton:hover
 {
     font-weight: 700;
+}
+.line {
+    border-bottom: 1px solid #113265; /* Параметры линии */
+}
+
+.navh1 {
+    font-family: Arial, sans-serif;
+    margin: 20px 0 30px;
+    text-align: center;
 }

@@ -24,9 +24,10 @@ else
 
 </head>
 <body>
-<div class="add"><a class="link" href="/addGroup.php">Добавить группу</a></div>
-<div class="task-container">
+<h1 class="navh1">Группы</h1>
 
+<div class="task-container">
+    <div class="add m-3"><a class="link" href="/addGroup.php">Добавить группу</a></div>
     <div class="m-3 p-3">
     <table id='myTable'  class="table  m-3 p-3 table-striped table-hover">
         <thead>
