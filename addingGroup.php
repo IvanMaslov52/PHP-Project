@@ -14,6 +14,6 @@ while ($row = pg_fetch_object($party))
 {
     $index = $row->party_id;
 }
-pg_query($cn, "INSERT INTO users_party (party_id,users_id,position,role) VALUES ($index,$id ,'active','lead') ");
+pg_query($cn, "INSERT INTO users_party (party_id,users_id,position,role) VALUES ($index,$id ,'active','lead')");
 header('Location: main.php ');
 ?>

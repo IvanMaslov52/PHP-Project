@@ -1,19 +1,23 @@
 $(function (){
+
+    $("#member").css("display", "none");
+    $("#change").css("display", "none");
       if($("#role").val() == "lead")
       {
-          $("#displayParticipants").append("<table id='myTable'  class=\"table  table-striped table-hover\">\n" +
+          $("#displayParticipants").append("<table id='myTable'  class=\"table   table-hover\">\n" +
               "            <thead>\n" +
               "            <th>Никнейм участника</th>\n" +
               "            <th>Роль в группе</th>\n" +
               "            <th>Статус</th>\n" +
               "            <th>Редактирование</th>\n" +
+              "            <th>Удаление</th>\n" +
               "            </thead>\n" +
               "            <tbody></tbody>\n" +
               "        </table>");
       }
       else {
 
-          $("#displayParticipants").append("<table id='myTable'  class=\"table  table-striped table-hover\">\n" +
+          $("#displayParticipants").append("<table id='myTable'  class=\"table  table-hover\">\n" +
               "            <thead>\n" +
               "            <th>Никнейм участника</th>\n" +
               "            <th>Роль в группе</th>\n" +
@@ -24,6 +28,98 @@ $(function (){
       }
 
 
+    $('.searchInput').bind("change keyup input click", function() {
+        if(this.value.length >= 2){
+            var value = this.value;
+            $.post("searchInGroup.php",
+                {"value": value,"group": $("#group").val()},
+                function(data){
+                    $(".searchResult").html(data).fadeIn();
+                }
+            );
+
+        }
+    });
+    $(".searchResult").hover(function(){
+        $(".searchInput").blur();
+    })
+    $(".searchResult").on("click", "li", function(){
+        s_user = $(this).text().trim();
+        $('#groupMembers option[value='+$(this).attr('id') +']').prop('selected', true);
+
+        if ($("#" + $(this).text().trim()).length) {
+        } else {
+            $('#selectedElem').append("<li id='" + $(this).text().trim() + "'> " +  $(this).text().trim() + "</li>");
+        }
+        $(".searchInput").val(s_user);
+        $(".searchResult").fadeOut();
+
+
+    });
+    $("#selectedElem").on("click", "li", function () {
+        $('#groupMembers option:contains("' + $(this).text().trim() + '")').prop('selected', false);
+        $(this).remove();
+    });
+
+
+
+    $("#member").on('submit', function (e) {
+        e.preventDefault();
+        $("#error").text("");
+    if($("#groupMembers").val()!= null){
+        $.post("addUserInGroup.php",
+            {"groupMembers": $("#groupMembers").val(),"group": $("#group").val()},
+            function(data){
+                data = JSON.parse(data);
+                var table = $('#myTable').DataTable();
+                for(let i = 0;i  < data.length;i++)
+                {
+                    table.row.add({
+                        "DT_RowId": data[i].id,
+                        "username": data[i].username,
+                        "role": 'none',
+                        "position": 'active',
+                        "redac": '<button type="button" onclick="change(' + data[i].id +')" class="imgButton" ><img class="icon" alt="logo_1" src="/image/recycle.png"/></button>',
+                        "delete": '<button type="button" onclick="remove(' + data[i].id +')" class="imgButton" ><img class="icon" alt="logo_1" src="/image/delete.png"/></button>'
+                    }).draw();
+                }
+                $("#member").css("display", "none");
+                $("#selectedElem").empty();
+                $('#groupMembers option').prop('selected', false);
+                $("#error").text("");
+
+            }
+        );}
+    else
+    {
+        $("#error").text("Это поле не может быть пустым");
+    }
+    });
+
+
+    $("#change").on('submit', function (e) {
+        e.preventDefault();
+            $.post("updateUserInGroup.php",
+                {"id": $("#formId").val(),"role":$("#formRole").val(),"status":$("#formStatus").val(),"username":$("#formUsername").val(),"group": $("#group").val()},
+                function(data){
+                    data = JSON.parse(data);
+
+                    var table = $('#myTable').DataTable();
+                    if ($("#" + data.id ).length) {
+                        table.row($("#" + data.id + "")).remove().draw();}
+                    table.row.add({
+                        "DT_RowId": data.id,
+                        "username": data.username,
+                        "role": data.role,
+                        "position": data.position,
+                        "redac": '<button type="button" onclick="change(' + data.id +')" class="imgButton" ><img class="icon" alt="logo_1" src="/image/recycle.png"/></button>',
+                        "delete": '<button type="button" onclick="remove(' + data.id +')" class="imgButton" ><img class="icon" alt="logo_1" src="/image/delete.png"/></button>'
+                    }).draw();
+                    $("#change").css("display", "none");
+                }
+            );
+
+    });
 
 
 
@@ -35,16 +131,31 @@ $(function (){
             {
                 var arr = [];
                 for (let i = 0; i < data.length; i++) {
-                    arr.push(
-                        {
-                            "DT_RowId": data[i].id,
-                            "username": data[i].username,
-                            "role": data[i].role,
-                            "position": data[i].position,
-                            "redac":
+                    if(    data[i].role == "lead")
+                    {
+                        arr.push(
+                            {
+                                "DT_RowId": data[i].id,
+                                "username": data[i].username,
+                                "role": data[i].role,
+                                "position": data[i].position,
+                                "redac": '',
+                                "delete": ''
+                            });
+                    }
+                    else
+                    {
+                        arr.push(
+                            {
+                                "DT_RowId": data[i].id,
+                                "username": data[i].username,
+                                "role": data[i].role,
+                                "position": data[i].position,
+                                "redac": '<button type="button" onclick="change(' + data[i].id +')" class="imgButton" ><img class="icon" alt="logo_1" src="/image/recycle.png"/></button>',
+                                "delete": '<button type="button" onclick="remove(' + data[i].id +')" class="imgButton" ><img class="icon" alt="logo_1" src="/image/delete.png"/></button>'
+                            });
+                    }
 
-                                '<button type="submit" class="navButton">Подробнее</button>'
-                        });
                 }
                 var table = $('#myTable').DataTable(
                     {
@@ -60,6 +171,9 @@ $(function (){
                             },
                             {
                                 "title": "Редактирование", "data": "redac", "visible": true,
+                            },
+                            {
+                                "title": "Удаление", "data": "delete", "visible": true,
                             }
                         ], "language": language(),
                         data: arr,
@@ -107,4 +221,97 @@ $(function (){
 
         }
     );
+
+
+
+
+    $.post("getAllUsers.php",
+        {"group": $("#group").val()},
+        function(data){
+            data = JSON.parse(data);
+            if($("#role").val() == "lead")
+            {
+
+                for (let i = 0; i < data.length; i++) {
+
+                $("#groupMembers").append('<option  value="'+ data[i].id+'"> '+data[i].username+' </option>');
+
+                }
+
+            }
+        }
+    );
+    $.post("displayParticipants.php",
+        {"group": $("#group").val()},
+        function(data){
+            data = JSON.parse(data);
+            if($("#role").val() == "lead")
+            {
+                for (let i = 0; i < data.length; i++) {
+                    if(data[i].username != $("#nickname").val()){
+                        $('#groupMembers option[value='+data[i].id +']').remove();
+                    }
+                }
+            }
+        }
+    );
+    $("#specialButton").click(function ()
+        {
+            $("#member").css("display", "");
+            $("#change").css("display", "none");
+        }
+    );
+    $("#hide").click(function ()
+        {
+            $("#member").css("display", "none");
+            $("#selectedElem").empty();
+            $('#groupMembers option').prop('selected', false);
+            $("#error").text("");
+        }
+    );
+    $("#hideChange").click(function ()
+        {
+            $("#change").css("display", "none");
+        }
+    );
+
+
+
+
+
+
 });
+function change(id) {
+    $("#member").css("display", "none");
+    $("#selectedElem").empty();
+    $('#groupMembers option').prop('selected', false);
+    $("#error").text("");
+
+    $.post("getOneUser.php",
+        {"id":id,"group": $("#group").val()},
+        function(data){
+            data = JSON.parse(data);
+            $("#formId").val(id);
+            $("#formLabel").text(data[0].username);
+            $("#formUsername").val(data[0].username);
+            $('#formRole option[value='+ data[0].role +']').prop('selected', true);
+            $('#formStatus option[value='+ data[0].status +']').prop('selected', true);
+            $("#change").css("display", "");
+        }
+    );
+
+
+};
+function remove(id)
+{
+    $.post("deleteUser.php",
+        {"userId":id,"group": $("#group").val()},
+        function(data){
+            data = JSON.parse(data);
+            console.log(data);
+            $("#" + data).remove();
+
+
+        }
+    );
+};

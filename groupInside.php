@@ -39,12 +39,13 @@ while ($row = pg_fetch_assoc($query))
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
 
+
 </head>
 <body>
+<input type="hidden" id="nickname" name="nickname" value="<?php echo $_SESSION['user']['username'] ?>">
 <input type="hidden" id="group" name="group" value="<?php echo $group ?>">
 <input type="hidden" id="role" name="role" value="<?php echo $role ?>">
 <div  class="task-container p-5">
-
 
 <?php echo "<h1>".$name."</h1>" ?>  <!-- сюда передать как параметр -->
 <div class="line p-1"></div>
@@ -59,9 +60,54 @@ while ($row = pg_fetch_assoc($query))
         <p class="fw-bold">Прогресс тасков: </p>
     </div>
 
-    <span class="">Задач выполнено : 25/50</span>
+    <span>Задач выполнено : 25/50</span>
     <div class="progressionContainer">
         <div class="progression"></div>
+    </div>
+    <div class="add">
+        <div class="right">
+
+        <button type="button" class="imgButton" id="specialButton"><img class="icon" alt="logo_1" src="/image/plus.png"></button>
+        </div>
+         <form id="member">
+             <div>
+                 <p>Введите никнйем:</p>
+                 <input ENGINE="text" name='referal' placeholder="Живой поиск" value="" class="searchInput"
+                        autocomplete="off">
+                 <ul class="searchResult"></ul>
+             </div>
+             <div class="resultDiv">
+                 <p>Выбранные пользователи</p>
+                 <ul id="selectedElem">
+                 </ul>
+                 <span id="error"></span>
+             </div>
+             <select id="groupMembers" name="groupMembers[]" multiple class="visible">
+             </select>
+             <img id="hide" class="icon" alt="logo_1" src="/image/back.png">
+             <button class="imgButton" type="submit"><img class="icon"  alt="logo_1" src="/image/disc.png"></button>
+         </form>
+
+            <form id="change">
+                <label id="formLabel"></label>
+                <input type="hidden" id="formId" name="formId">
+                <input type="hidden" id="formUsername" name="formUsername">
+                <select id="formRole" name="formRole">
+                    <option value="none">none</option>
+                    <option value="backend">backend</option>
+                    <option value="frontend">frontend</option>
+                    <option value="architect">architect</option>
+                </select>
+                <select id="formStatus" name="formStatus">
+                    <option value="active">active</option>
+                    <option value="busy">busy</option>
+                    <option value="excluded">excluded</option>
+                    <option value="waiting">waiting</option>
+                </select>
+               <img id="hideChange" class="icon" alt="logo_1" src="/image/back.png">
+                <button class="imgButton" type="submit"><img class="icon"  alt="logo_1" src="/image/disc.png"></button>
+            </form>
+
     </div>
 <p class="pt-3 fw-bold"> Список участников: </p>
 
