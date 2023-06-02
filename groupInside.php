@@ -55,6 +55,13 @@ while ($row = pg_fetch_assoc($query))
     <?php
     echo "<div class='border  border-2 rounded border-primary p-2'>".$description."</div>"
     ?>
+    <div class="pt-3">
+        <p class="fw-bold"> Статус группы: </p>
+      <?php
+      echo "<div>".$status."</div>";
+      ?>
+    </div>
+
 
     <div class="pt-3">
         <p class="fw-bold">Прогресс тасков: </p>
@@ -66,6 +73,20 @@ while ($row = pg_fetch_assoc($query))
     </div>
     <div class="add">
         <div class="right">
+            <?php
+            if($role == 'lead')
+            {
+                echo ' <form action="changeGroup.php" method="post">
+               <input type="hidden" id="groupId" name="groupId" value="'.$group.'">
+                <button type="submit" class="navButton">Изменить группу</button>
+            </form>';
+            }
+
+
+
+
+            ?>
+
 
         <button type="button" class="imgButton" id="specialButton"><img class="icon" alt="logo_1" src="/image/plus.png"></button>
         </div>
