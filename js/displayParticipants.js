@@ -1,5 +1,6 @@
 $(function (){
 
+    $("#selectedElem").css("display", "none");
     $("#member").css("display", "none");
     $("#change").css("display", "none");
       if($("#role").val() == "lead")
@@ -51,6 +52,7 @@ $(function (){
         } else {
             $('#selectedElem').append("<li id='" + $(this).text().trim() + "'> " +  $(this).text().trim() + "</li>");
         }
+        $("#selectedElem").css("display", "");
         $(".searchInput").val(s_user);
         $(".searchResult").fadeOut();
 
@@ -59,6 +61,10 @@ $(function (){
     $("#selectedElem").on("click", "li", function () {
         $('#groupMembers option:contains("' + $(this).text().trim() + '")').prop('selected', false);
         $(this).remove();
+        if ($("#selectedElem").children('li').length == 0) {
+
+            $("#selectedElem").css('display', 'none');
+        }
     });
 
 
@@ -87,7 +93,7 @@ $(function (){
                 $("#selectedElem").empty();
                 $('#groupMembers option').prop('selected', false);
                 $("#error").text("");
-
+                $("#specialButton").css("display", "");
             }
         );}
     else
@@ -259,6 +265,7 @@ $(function (){
         {
             $("#member").css("display", "");
             $("#change").css("display", "none");
+            $("#specialButton").css("display", "none");
         }
     );
     $("#hide").click(function ()
@@ -267,6 +274,7 @@ $(function (){
             $("#selectedElem").empty();
             $('#groupMembers option').prop('selected', false);
             $("#error").text("");
+            $("#specialButton").css("display", "");
         }
     );
     $("#hideChange").click(function ()

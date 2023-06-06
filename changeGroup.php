@@ -29,6 +29,7 @@ while ($row = pg_fetch_assoc($query))
 <head>
     <meta charset="UTF-8">
     <title>ChangeGroup</title>
+    <link type="text/css" rel="stylesheet" href="css/group.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.1/jquery.validate.js"></script>
@@ -53,10 +54,16 @@ while ($row = pg_fetch_assoc($query))
         </div>
         <input type="hidden" class="form-control" name="groupId" id="groupId" value="<?php echo $group ?>" >
 
-        <div class="form-group p-1">
-            <button type="submit" class="submitButton">Изменить</button>
-        </div>
+
+            <button type="submit" class="navButton">Изменить</button>
+
     </form>
+    <form  action="groupInside.php" method='POST'>
+            <input type='hidden' name='group'  id='group' value='<?php echo $group ?> '>
+                <button type="submit" class="navButton">Назад</button>
+
+    </form>
+
     <p>
         <?php
         if(isset($_SESSION['inform']))

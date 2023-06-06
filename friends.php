@@ -20,7 +20,7 @@ else
     <script src="js/search.js"></script>
 </head>
 <body class="bodyContainer">
-<h1><?= $_SESSION['user']['username'] ?></h1>
+<h1 class="mt-2"><?= $_SESSION['user']['username'] ?></h1>
 
 <div class="block">
 <div class="center">
@@ -33,7 +33,7 @@ else
 <div class="profile-description">
     <div class="contact-info">
         <form action='friendsScript.php' method='post'  class='p-4' id="friendsForm">
-            <label for='username'>Добавить друга:</label>
+            <label for='username' class="p-2">Добавить друга:</label>
             <input id='who' ENGINE='text' name='who' placeholder='Живой поиск'  class='who'  autocomplete='off'>
             <button type='submit' class="submitButton">Добавить</button>
             <ul class='search_result'></ul>
