@@ -35,8 +35,9 @@ else
         <form action='friendsScript.php' method='post'  class='p-4' id="friendsForm">
             <label for='username'>Добавить друга:</label>
             <input id='who' ENGINE='text' name='who' placeholder='Живой поиск'  class='who'  autocomplete='off'>
+            <button type='submit' class="submitButton">Добавить</button>
             <ul class='search_result'></ul>
-            <button type='submit'>Добавить</button>
+
         </form>
         <div id="mainDiv">
 

@@ -271,6 +271,7 @@ $(function (){
     );
     $("#hideChange").click(function ()
         {
+            $("#specialButton").css("display", "");
             $("#change").css("display", "none");
         }
     );
@@ -282,6 +283,7 @@ $(function (){
 
 });
 function change(id) {
+    $("#specialButton").css("display", "none");
     $("#member").css("display", "none");
     $("#selectedElem").empty();
     $('#groupMembers option').prop('selected', false);

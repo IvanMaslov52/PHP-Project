@@ -7,8 +7,8 @@ $(function(){
             $.post("search.php",
                 {"value": value},
                 function(data){
+                console.log(data);
                     $(".search_result").html(data).fadeIn();
-                    console.log("132131");
                 }
             );
 
