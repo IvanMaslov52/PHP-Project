@@ -361,8 +361,6 @@ function update()
             }
             else
             {
-
-
                 var arr = [];
                 for (let i = 0; i < data.length; i++) {
                     table.row.add(
