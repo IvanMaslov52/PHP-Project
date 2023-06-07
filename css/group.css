@@ -243,3 +243,9 @@ body {
     appearance: none;
     cursor: pointer;
 }
+.rightButton
+{
+    width: 170px;
+    margin-left: auto;
+    margin-right: 10px;
+}

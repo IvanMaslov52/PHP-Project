@@ -3,6 +3,11 @@ $(function (){
     $("#selectedElem").css("display", "none");
     $("#member").css("display", "none");
     $("#change").css("display", "none");
+
+
+
+
+
       if($("#role").val() == "lead")
       {
           $("#displayParticipants").append("<table id='myTable'  class=\"table   table-hover\">\n" +
@@ -78,17 +83,8 @@ $(function (){
             function(data){
                 data = JSON.parse(data);
                 var table = $('#myTable').DataTable();
-                for(let i = 0;i  < data.length;i++)
-                {
-                    table.row.add({
-                        "DT_RowId": data[i].id,
-                        "username": data[i].username,
-                        "role": 'none',
-                        "position": 'active',
-                        "redac": '<button type="button" onclick="change(' + data[i].id +')" class="imgButton" ><img class="icon" alt="logo_1" src="/image/recycle.png"/></button>',
-                        "delete": '<button type="button" onclick="remove(' + data[i].id +')" class="imgButton" ><img class="icon" alt="logo_1" src="/image/delete.png"/></button>'
-                    }).draw();
-                }
+                table.clear().draw();
+                update();
                 $("#member").css("display", "none");
                 $("#selectedElem").empty();
                 $('#groupMembers option').prop('selected', false);
@@ -109,19 +105,11 @@ $(function (){
                 {"id": $("#formId").val(),"role":$("#formRole").val(),"status":$("#formStatus").val(),"username":$("#formUsername").val(),"group": $("#group").val()},
                 function(data){
                     data = JSON.parse(data);
-
                     var table = $('#myTable').DataTable();
-                    if ($("#" + data.id ).length) {
-                        table.row($("#" + data.id + "")).remove().draw();}
-                    table.row.add({
-                        "DT_RowId": data.id,
-                        "username": data.username,
-                        "role": data.role,
-                        "position": data.position,
-                        "redac": '<button type="button" onclick="change(' + data.id +')" class="imgButton" ><img class="icon" alt="logo_1" src="/image/recycle.png"/></button>',
-                        "delete": '<button type="button" onclick="remove(' + data.id +')" class="imgButton" ><img class="icon" alt="logo_1" src="/image/delete.png"/></button>'
-                    }).draw();
+                    table.clear().draw();
+                   update();
                     $("#change").css("display", "none");
+                    $("#specialButton").css("display", "");
                 }
             );
 
@@ -318,10 +306,76 @@ function remove(id)
         {"userId":id,"group": $("#group").val()},
         function(data){
             data = JSON.parse(data);
-            console.log(data);
-            $("#" + data).remove();
-
-
+            var table = $('#myTable').DataTable();
+            table.clear().draw();
+            $("#groupMembers").append('<option  value="'+ data[0].id+'"> '+data[0].username+' </option>');
+            update();
         }
     );
 };
+
+
+function update()
+{
+    $.post("displayParticipants.php",
+        {"group": $("#group").val()},
+        function(data){
+            data = JSON.parse(data);
+            var table = $('#myTable').DataTable();
+            if($("#role").val() == "lead")
+            {
+                var arr = [];
+
+                for (let i = 0; i < data.length; i++) {
+                    if(    data[i].role == "lead")
+                    {
+
+
+                        table.row.add(
+                            {
+                                "DT_RowId": data[i].id,
+                                "username": data[i].username,
+                                "role": data[i].role,
+                                "position": data[i].position,
+                                "redac": '',
+                                "delete": ''
+                            }).draw();
+                    }
+                    else
+                    {
+
+
+                        table.row.add(
+                            {
+                                "DT_RowId": data[i].id,
+                                "username": data[i].username,
+                                "role": data[i].role,
+                                "position": data[i].position,
+                                "redac": '<button type="button" onclick="change(' + data[i].id +')" class="imgButton" ><img class="icon" alt="logo_1" src="/image/recycle.png"/></button>',
+                                "delete": '<button type="button" onclick="remove(' + data[i].id +')" class="imgButton" ><img class="icon" alt="logo_1" src="/image/delete.png"/></button>'
+                            }).draw();
+                    }
+
+                }
+
+            }
+            else
+            {
+
+
+                var arr = [];
+                for (let i = 0; i < data.length; i++) {
+                    table.row.add(
+                        {
+                            "DT_RowId": data[i].id,
+                            "username": data[i].username,
+                            "role": data[i].role,
+                            "position": data[i].position
+                        }).draw();
+                }
+
+            }
+
+        }
+    );
+}

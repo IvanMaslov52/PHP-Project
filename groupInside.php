@@ -79,7 +79,7 @@ while ($row = pg_fetch_assoc($query))
             {
                 echo ' <form action="changeGroup.php" method="post"> 
                <input type="hidden" id="groupId" name="groupId" value="'.$group.'">
-                <div class="right"><button type="submit" class="navButton">Изменить группу</button></div>
+                <div class="rightButton"><button type="submit" class="navButton">Изменить группу</button></div>
             </form>';
             }
 
