@@ -90,7 +90,7 @@ while ($row = pg_fetch_assoc($query))
          <form id="member">
         <div>
              <div class="inline">
-                 <p>Введите никнйем:</p>
+                 <p>Введите никнейм:</p>
                  <input ENGINE="text" name='referal' placeholder="Живой поиск" value="" class="searchInput" autocomplete="off">
                  <ul class="searchResult"></ul>
              </div>

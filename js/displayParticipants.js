@@ -10,6 +10,7 @@ $(function (){
 
       if($("#role").val() == "lead")
       {
+
           $("#displayParticipants").append("<table id='myTable'  class=\"table   table-hover\">\n" +
               "            <thead>\n" +
               "            <th>Никнейм участника</th>\n" +
@@ -22,6 +23,7 @@ $(function (){
               "        </table>");
       }
       else {
+          $("#specialButton").css("display", "none");
 
           $("#displayParticipants").append("<table id='myTable'  class=\"table  table-hover\">\n" +
               "            <thead>\n" +

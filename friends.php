@@ -20,7 +20,7 @@ else
     <script src="js/search.js"></script>
 </head>
 <body class="bodyContainer">
-<h1 class="mt-2"><?= $_SESSION['user']['username'] ?></h1>
+<h1 class="mt-3"><?= $_SESSION['user']['username'] ?></h1>
 
 <div class="block">
 <div class="center">
