@@ -377,3 +377,26 @@ h1 {
 {
     display: flex;
 }
+.imgLink {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    margin: 3px;
+    background-color: transparent;
+}
+
+.imgLink:hover {
+    outline: 2px solid black;
+}
+.inline
+{
+    vertical-align: top;
+    display: inline-block;
+    width: 300px;
+}
+.inlineButton
+{
+    vertical-align: top;
+    display: inline-block;
+}

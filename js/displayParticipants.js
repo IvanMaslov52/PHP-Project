@@ -24,7 +24,6 @@ $(function (){
       }
       else {
           $("#specialButton").css("display", "none");
-
           $("#displayParticipants").append("<table id='myTable'  class=\"table  table-hover\">\n" +
               "            <thead>\n" +
               "            <th>Никнейм участника</th>\n" +
@@ -96,7 +95,7 @@ $(function (){
         );}
     else
     {
-        $("#error").text("Это поле не может быть пустым");
+        $("#error").text("У вас не выбран пользователь");
     }
     });
 

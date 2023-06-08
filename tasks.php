@@ -17,9 +17,11 @@ else
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+
+<div class="p-2"><a class="imgLink" href="/main.php"><img class="icon" src="image/exit.png"></a></div>
+<h1 class="text-center">Задачи</h1>
     <div class="task-container">
         <div class="mt-3 ">
-        <a class="linkLeft m-3 p-1" href="/main.php">Назад</a></div>
         <div class="task">
             <div class="task-group">Группа 1</div>
             <div class="task-deadline">Дедлайн: 01.05.2023</div>

@@ -36,10 +36,15 @@ while ($row = pg_fetch_assoc($query))
     <script src="js/changeGroup.js"></script>
     <link rel="stylesheet" href="css/authorize.css" type="text/css">
 </head>
-<body class="container bg-light">
+<body class="bg-light">
+<form  action="groupInside.php" method='POST' class="p-2">
+    <input type='hidden' name='group'  id='group' value='<?php echo $group ?> '>
+    <button type="submit" class="imgButton"><img class="icon" src="image/exit.png"></button>
 
+</form>
+<div class="container">
 <h1>Изменение группы</h1>
-<div class=" boxshadow container mt-4 p-4 m-4 bg-white rounded-4">
+<div class=" boxshadow mt-4 p-4 m-4 bg-white rounded-4">
     <div class="form-group p-1">
     </div>
     <form id="changeGroup" action="updateGroup.php" method="post">
@@ -55,14 +60,10 @@ while ($row = pg_fetch_assoc($query))
         <input type="hidden" class="form-control" name="groupId" id="groupId" value="<?php echo $group ?>" >
 
 
-            <button type="submit" class="navButton">Изменить</button>
+            <button type="submit" class="submitButton">Изменить</button>
 
     </form>
-    <form  action="groupInside.php" method='POST'>
-            <input type='hidden' name='group'  id='group' value='<?php echo $group ?> '>
-                <button type="submit" class="navButton">Назад</button>
 
-    </form>
 
     <p>
         <?php
@@ -73,6 +74,7 @@ while ($row = pg_fetch_assoc($query))
         unset($_SESSION['inform']);
         ?>
     </p>
+</div>
 </div>
 </body>
 </html>

@@ -51,11 +51,11 @@ else
             </div>
         </div>
         </div>
-        <div class="add"><a class="link" href="/addGroup.php">Добавить группу</a></div>
+
 
 
         <div id="group">
-        <div  class="row rowDiv pb-1">
+        <div  class="row rowDiv pt-3">
             <div class="addGroupDiv col-5 bg-white rounded-3 p-2">
                 <div class="p-1">
                 <div class="myRow pb-1">

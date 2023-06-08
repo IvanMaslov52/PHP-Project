@@ -43,6 +43,7 @@ while ($row = pg_fetch_assoc($query))
 
 </head>
 <body>
+<div class="p-2"><a class="imgLink" href="/group.php"><img class="icon" src="image/exit.png"></a></div>
 <input type="hidden" id="nickname" name="nickname" value="<?php echo $_SESSION['user']['username'] ?>">
 <input type="hidden" id="group" name="group" value="<?php echo $group ?>">
 <input type="hidden" id="role" name="role" value="<?php echo $role ?>">

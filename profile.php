@@ -16,9 +16,11 @@ else
     <title>Профиль пользователя</title>
     <link rel="stylesheet" href="css/styles.css" type="text/css">
     <meta charset="utf-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="js/profile.js"></script>
 </head>
 <body class="bodyContainer">
+<div class="p-2"><a class="imgLink" href="/main.php"><img class="icon" src="image/exit.png"></a></div>
     <h1>Профиль пользователя</h1>
     <div class="profile-description">
         <div class="avatar-container">

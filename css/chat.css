@@ -2,7 +2,6 @@ body {
     font: 12px arial;
     color: #222;
     text-align: center;
-    padding: 35px;
 }
 .bodyContainer {
     font-family: Arial, sans-serif;
@@ -105,4 +104,27 @@ button {
     color: black;
     font-family: "Roboto Light";
     text-decoration: none;
+}
+.imgLink {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    margin: 3px;
+    background-color: transparent;
+}
+
+.imgLink:hover {
+    outline: 2px solid black;
+}
+.inline
+{
+    vertical-align: top;
+    display: inline-block;
+    width: 300px;
+}
+.inlineButton
+{
+    vertical-align: top;
+    display: inline-block;
 }

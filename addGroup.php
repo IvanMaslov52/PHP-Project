@@ -20,10 +20,11 @@ else
     <script src="js/addGroup.js"></script>
     <link rel="stylesheet" href="css/authorize.css" type="text/css">
 </head>
-<body class="container bg-light">
-
+<body class="bg-light">
+<div class="p-2"><a class="imgLink" href="/group.php"><img class="icon" src="image/exit.png"></a></div>
+<div class="container">
 <h1>Создание группы</h1>
-<div class=" boxshadow container mt-4 p-4 m-4 bg-white rounded-4">
+<div class=" boxshadow  mt-4 p-4 m-4 bg-white rounded-4">
     <div class="form-group p-1">
     </div>
     <form id="addGroup" action="addingGroup.php" method="post">
@@ -51,6 +52,7 @@ else
         unset($_SESSION['inform']);
         ?>
     </p>
+</div>
 </div>
 </body>
 </html>

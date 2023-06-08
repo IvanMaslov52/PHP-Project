@@ -19,6 +19,7 @@ else
     <script src="js/chat.js"></script>
 </head>
 <body class="bodyContainer">
+<div class="p-2"><a class="imgLink" href="/friends.php"><img class="icon" src="image/exit.png"></a></div>
 <div class="display" id="senderUsername"><?= $_SESSION['user']['username'] ?></div>
 <div class="display" id="senderId"><?= $_SESSION['user']['id'] ?></div>
 <div class="display" id="receiverId"><?= $_SESSION['user']['senderId'] ?></div>
@@ -27,7 +28,6 @@ else
 <div id="wrapper">
     <div id="menu">
         <p class="welcome">Welcome, <b><?= $_SESSION['user']['username'] ?></b></p>
-        <p class="logout"><a class="link" id="exit" href="friends.php">Exit Chat</a></p>
         <div style="clear:both"></div>
     </div>
     <div id="chatbox"></div>

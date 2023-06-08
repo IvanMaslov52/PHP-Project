@@ -266,3 +266,16 @@ body {
     text-align: right;
     width: 1000px;
 }
+
+.imgLink {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    margin: 3px;
+    background-color: transparent;
+}
+
+.imgLink:hover {
+    outline: 2px solid black;
+}
