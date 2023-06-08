@@ -23,9 +23,7 @@ a {
     text-decoration: none;
 }
 
-a:hover {
-    text-decoration: underline;
-}
+
 
 #wrapper, #loginform {
     margin: 0 auto;
@@ -102,4 +100,9 @@ button {
 }
 .display{
     display: none;
+}
+.link {
+    color: black;
+    font-family: "Roboto Light";
+    text-decoration: none;
 }

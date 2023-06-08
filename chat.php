@@ -27,7 +27,7 @@ else
 <div id="wrapper">
     <div id="menu">
         <p class="welcome">Welcome, <b><?= $_SESSION['user']['username'] ?></b></p>
-        <p class="logout"><a id="exit" href="friends.php">Exit Chat</a></p>
+        <p class="logout"><a class="link" id="exit" href="friends.php">Exit Chat</a></p>
         <div style="clear:both"></div>
     </div>
     <div id="chatbox"></div>

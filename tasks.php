@@ -14,9 +14,12 @@ else
     <meta charset="utf-8">
     <title>Task Manager</title>
     <link type="text/css" rel="stylesheet" href="css/task.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="task-container">
+        <div class="mt-3 ">
+        <a class="linkLeft m-3 p-1" href="/main.php">Назад</a></div>
         <div class="task">
             <div class="task-group">Группа 1</div>
             <div class="task-deadline">Дедлайн: 01.05.2023</div>

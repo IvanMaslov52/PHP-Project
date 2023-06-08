@@ -54,3 +54,9 @@ body {
 .task-action:hover {
     background-color: #444;
 }
+.linkLeft {
+    color: black;
+    font-family: "Roboto Light";
+    text-decoration: none;
+    text-align: left;
+}

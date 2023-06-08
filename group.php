@@ -27,7 +27,8 @@ else
 <h1 class="navh1">Группы</h1>
 
 <div class="task-container">
-    <div class="add m-3"><a class="link" href="/addGroup.php">Добавить группу</a></div>
+
+    <div class="m-3 p-1 inline"><a class="linkLeft " href="/main.php">Назад</a> </div><div class="m-3 p-1 inline wightadd"><a class="linkRight" href="/addGroup.php">Добавить группу</a></div>
     <div class="m-3 p-3">
     <table id='myTable'  class="table  m-3 p-3 table-striped table-hover">
         <thead>
